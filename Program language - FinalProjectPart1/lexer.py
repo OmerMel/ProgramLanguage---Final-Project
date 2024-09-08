@@ -10,7 +10,7 @@ from general import *
 # It also manages error detection for illegal characters and invalid tokens.
 
 
-class my_Lexer:
+class MyLexer:
     def __init__(self, fn, text):
         self.fn = fn
         self.text = text
@@ -25,18 +25,17 @@ class my_Lexer:
     def make_tokens(self):
         tokens = []
 
-        while self.current_char != None:
+        while self.current_char is not None:
             if self.current_char in ' \t':
                 self.advance()
             elif self.current_char in DIGITS:
                 tokens.append(self.make_number())
-
+            elif self.current_char == '#':
+                self.skip_comment()
             elif self.current_char == '-' and self.next_char() in DIGITS:
                 tokens.append(self.make_negative_number())
-
             elif self.current_char in LETTERS:
                 tokens.append(self.make_identifier())
-
             elif self.current_char == '@':
                 token = self.make_keyword()
                 if token:
@@ -47,7 +46,6 @@ class my_Lexer:
                         tokens.append(token)
                     else:
                         pos_start = self.pos.copy()
-                        char = self.current_char
                         self.advance()
                         return [], IllegalCharError(pos_start, self.pos, "Invalid token starting with '@'")
             elif self.current_char == '(':
@@ -67,10 +65,16 @@ class my_Lexer:
 
         return tokens, None
 
+    def skip_comment(self):
+        """Skips characters until the end of the line (single-line comment)."""
+        while self.current_char is not None and self.current_char != '\n':
+            self.advance()
+        self.advance()
+
     def make_number(self):
         num_str = ''
         pos_start = self.pos.copy()
-        while self.current_char != None and self.current_char in DIGITS:
+        while self.current_char is not None and self.current_char in DIGITS:
             num_str += self.current_char
             self.advance()
         return my_Token(T_INT, int(num_str), pos_start, self.pos)
@@ -79,7 +83,7 @@ class my_Lexer:
         num_str = '-'
         pos_start = self.pos.copy()
         self.advance()
-        while self.current_char != None and self.current_char in DIGITS:
+        while self.current_char is not None and self.current_char in DIGITS:
             num_str += self.current_char
             self.advance()
         return my_Token(T_INT, int(num_str), pos_start, self.pos)
@@ -87,7 +91,7 @@ class my_Lexer:
     def make_identifier(self):
         _str = ''
         pos_start = self.pos.copy()
-        while self.current_char != None and self.current_char in LETTERS:
+        while self.current_char is not None and self.current_char in LETTERS:
             _str += self.current_char
             self.advance()
         return my_Token(T_IDENTIFIER, _str, pos_start=pos_start)
@@ -103,7 +107,7 @@ class my_Lexer:
         pos_start = self.pos.copy()
         self.advance()
 
-        while self.current_char != None and self.current_char != '@':
+        while self.current_char is not None and self.current_char != '@':
             id_str += self.current_char
             self.advance()
 
@@ -151,7 +155,7 @@ class my_Lexer:
         pos_start = self.pos.copy()
         self.advance()
 
-        while self.current_char != None and self.current_char != '@':
+        while self.current_char is not None and self.current_char != '@':
             op_str += self.current_char
             self.advance()
 
@@ -189,4 +193,3 @@ class my_Lexer:
                 return my_Token(T_OR, pos_start=pos_start)
 
         return None  # This is not a valid operator
-
