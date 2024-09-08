@@ -1,6 +1,6 @@
 from parser import *
 from general import *
-from lexer import my_Lexer
+from lexer import MyLexer
 import sys
 #######################################
 # function
@@ -13,12 +13,12 @@ import sys
 
 
 class Function:
-    def __init__(self, name, body_node, arg_names, parent_context, global_symbol_table):
+    def __init__(self, name, body_node, arg_names, parent_context, symbol_table):
         self.name = name
         self.body_node = body_node
         self.arg_names = arg_names
         self.parent_context = parent_context
-        self.global_symbol_table = global_symbol_table
+        self.global_symbol_table = symbol_table
 
     def execute(self, args):
         res = RTResult()
@@ -39,7 +39,8 @@ class Function:
 
         interpreter.context = new_context
         value = res.register(interpreter.visit(self.body_node))
-        if res.error: return res
+        if res.error:
+            return res
         return res.success(value)
 
 #######################################
@@ -67,6 +68,7 @@ class Context:
 # This class helps in propagating results and errors through the interpretation process,
 # allowing for clean error handling and result management throughout the interpreter.
 
+
 class RTResult:
     def __init__(self):
         self.value = None
@@ -74,7 +76,8 @@ class RTResult:
 
     def register(self, res):
         if isinstance(res, RTResult):
-            if res.error: self.error = res.error
+            if res.error:
+                self.error = res.error
             return res.value
         return res
 
@@ -93,13 +96,16 @@ class RTResult:
 # It also manages the global symbol table and execution context, ensuring proper scoping and variable resolution.
 
 class Interpreter:
-    def __init__(self, global_symbol_table):
-        self.global_symbol_table = global_symbol_table
+    def __init__(self, symbol_table):
+        self.global_symbol_table = symbol_table
         self.context = Context('<program>')
 
     def visit(self, node):
         method_name = f'visit_{type(node).__name__}'
-        method = getattr(self, method_name, self.no_visit_method)
+        if hasattr(self, method_name):
+            method = getattr(self, method_name)
+        else:
+            method = self.no_visit_method
         return method(node)
 
     def visit_FunctionDefNode(self, node):
@@ -129,16 +135,19 @@ class Interpreter:
         if not func_value:
             return res.failure(RTError(
                 node.pos_start, node.pos_end,
-                f"'{node.name_tok.tok.value if isinstance(node.name_tok, IdentifierNode) else '<anonymous>'}'  is not defined",
+                f"'{node.name_tok.tok.value if isinstance(node.name_tok, IdentifierNode) else '<anonymous>'}'  "
+                f"is not defined",
                 self.context
             ))
 
         for arg_node in node.arg_nodes:
             args.append(res.register(self.visit(arg_node)))
-            if res.error: return res
+            if res.error:
+                return res
 
         return_value = res.register(func_value.execute(args))
-        if res.error: return res
+        if res.error:
+            return res
         return res.success(return_value)
 
     def visit_IdentifierNode(self, node):
@@ -167,9 +176,11 @@ class Interpreter:
         res = RTResult()
         result = None
         left = res.register(self.visit(node.left_node))
-        if res.error: return res
+        if res.error:
+            return res
         right = res.register(self.visit(node.right_node))
-        if res.error: return res
+        if res.error:
+            return res
 
         if node.op_tok.type == T_DIV:
             if right == 0:
@@ -209,7 +220,8 @@ class Interpreter:
     def visit_UnaryOpNode(self, node):
         res = RTResult()
         value = res.register(self.visit(node.node))
-        if res.error: return res
+        if res.error:
+            return res
 
         if node.op_tok.type == T_NOT:
             value = not value
@@ -223,7 +235,8 @@ class Interpreter:
 
         for condition, expr in node.cases:
             condition_value = res.register(self.visit(condition))
-            if res.error: return res
+            if res.error:
+                return res
 
             if condition_value:
                 return res.success(res.register(self.visit(expr)))
@@ -238,14 +251,17 @@ class Interpreter:
         results = []
 
         start_value = res.register(self.visit(node.start_value_node))
-        if res.error: return res
+        if res.error:
+            return res
 
         end_value = res.register(self.visit(node.end_value_node))
-        if res.error: return res
+        if res.error:
+            return res
 
         if node.step_value_node:
             step_value = res.register(self.visit(node.step_value_node))
-            if res.error: return res
+            if res.error:
+                return res
         else:
             step_value = 1
 
@@ -255,7 +271,8 @@ class Interpreter:
             self.global_symbol_table[node.var_name_tok.value] = i
 
             value = res.register(self.visit(node.body_node))
-            if res.error: return res
+            if res.error:
+                return res
 
             results.append(value)
             i += step_value
@@ -280,35 +297,38 @@ class Interpreter:
 global_symbol_table = {}
 
 
-def run(fn, text):
+def main():
+    global global_symbol_table
+    interpreter = Interpreter(global_symbol_table)  # Initialize interpreter once
+
+    if len(sys.argv) == 2:
+        # File mode
+        filename = sys.argv[1]
+        run_file(filename, interpreter)
+    else:
+        # REPL mode
+        run_repl(interpreter)
+
+
+def run(fn, text, interpreter):
     # Generate tokens
-    lexer = my_Lexer(fn, text)
+    lexer = MyLexer(fn, text)
     tokens, error = lexer.make_tokens()
     if error:
         return None, error
     # Parsing
     parser = Parser(tokens)
     ast = parser.parse()
-    if ast.error: return None, ast.error
+    if ast.error:
+        return None, ast.error
 
     # Interpreting
-    interpreter = Interpreter(global_symbol_table)
     result = interpreter.visit(ast.node)
 
     return result.value, result.error
 
 
-def main():
-    if len(sys.argv) == 2:
-        # File mode
-        filename = sys.argv[1]
-        run_file(filename)
-    else:
-        # REPL mode
-        run_repl()
-
-
-def run_file(filename):
+def run_file(filename, interpreter):
     if not filename.endswith('.lambda'):
         print("Error: The file does not have a '.lambda' extension.")
         return
@@ -327,14 +347,14 @@ def run_file(filename):
         if line == '':
             continue  # Skip empty lines
         print(f"Line {i+1}: {line}")
-        result, error = run(filename, line)
+        result, error = run(filename, line, interpreter)
         if error:
             print(f"Error: {error.as_string()}\n")
         else:
             print(f"Output: {result}\n")
 
 
-def run_repl():
+def run_repl(interpreter):
     print("Starting REPL... Type 'exit' to quit.")
     while True:
         try:
@@ -342,7 +362,7 @@ def run_repl():
             if text.strip().lower() == 'exit':
                 print("\nExiting REPL...")
                 break
-            result, error = run('<stdin>', text)
+            result, error = run('<stdin>', text, interpreter)
             if error:
                 print(error.as_string())
             else:
@@ -354,4 +374,3 @@ def run_repl():
 
 if __name__ == '__main__':
     main()
-
