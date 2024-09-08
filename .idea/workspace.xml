@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2f24e0bc-0c9c-4c05-a637-01f0bd09bc79" name="Changes" comment="fixing warnings">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Program language - FinalProjectPart1/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProgramLanguage - FinalProjectPart2/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ProgramLanguage - Final Project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program language - FinalProjectPart1/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program language - FinalProjectPart1/.idea/ep14.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program language - FinalProjectPart1/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program language - FinalProjectPart1/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program language - FinalProjectPart1/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program language - FinalProjectPart1/Design Report.md" beforeDir="false" afterPath="$PROJECT_DIR$/Program language - FinalProjectPart1/Design Report.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgramLanguage - FinalProjectPart2/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgramLanguage - FinalProjectPart2/.idea/ProgramLanguage - FinalProjectPart2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgramLanguage - FinalProjectPart2/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgramLanguage - FinalProjectPart2/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgramLanguage - FinalProjectPart2/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgramLanguage - FinalProjectPart2/Part2-FinalProject.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProgramLanguage - FinalProjectPart2/Part2-FinalProject.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2le31DUbA6OSg34Gx8qri02ePoc" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Merging master",
+    "last_opened_file_path": "D:/Scripting/ProgramLanguage - Final Project",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2f24e0bc-0c9c-4c05-a637-01f0bd09bc79" name="Changes" comment="" />
+      <created>1725526498936</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1725526498936</updated>
+    </task>
+    <task id="LOCAL‎-00001" summary="updating run_file function">
+      <option name="closed" value="true" />
+      <created>1725819546999</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL‎-00001" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1725819546999</updated>
+    </task>
+    <task id="LOCAL‎-00002" summary="updated to .lambda extension">
+      <option name="closed" value="true" />
+      <created>1725821772932</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL‎-00002" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1725821772932</updated>
+    </task>
+    <task id="LOCAL‎-00003" summary="added comment handling with '#'">
+      <option name="closed" value="true" />
+      <created>1725821794695</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL‎-00003" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1725821794695</updated>
+    </task>
+    <task id="LOCAL‎-00004" summary="fixing warnings">
+      <option name="closed" value="true" />
+      <created>1725822216311</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL‎-00004" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1725822216311</updated>
+    </task>
+    <task id="LOCAL‎-00005" summary="fixing warnings">
+      <option name="closed" value="true" />
+      <created>1725822326575</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL‎-00005" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1725822326575</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="." />
+    <MESSAGE value="updating run_file function" />
+    <MESSAGE value="updated to .lambda extension" />
+    <MESSAGE value="added comment handling with '#'" />
+    <MESSAGE value="fixing warnings" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing warnings" />
+  </component>
+</project>
