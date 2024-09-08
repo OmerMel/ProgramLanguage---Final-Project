@@ -309,9 +309,19 @@ def main():
 
 
 def run_file(filename):
-    with open(filename, 'r') as file:
-        lines = file.readlines()
+    if not filename.endswith('.lambda'):
+        print("Error: The file does not have a '.lambda' extension.")
+        return
 
+    # Try to open and read the file
+    try:
+        with open(filename, 'r') as file:
+            lines = file.readlines()
+    except FileNotFoundError:
+        print(f"Error: The file '{filename}' does not exist.")
+        return
+
+    # Process each line in the file
     for i, line in enumerate(lines):
         line = line.strip()
         if line == '':
