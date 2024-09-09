@@ -6,6 +6,8 @@
 
 <params> ::= <identifier> | <identifier> "," <params> | ε
 
+<args> ::= <expr> | <expr> "," <args> | ε
+
 <expr> ::= <term> | <expr> <op> <term> | <unary-op> <expr>
 
 <term> ::= <factor> | <term> <op> <factor>
@@ -13,8 +15,6 @@
 <factor> ::= <number> | <boolean> | <identifier> | <func-call> | <lambda-expr> | <if-expr> | <for-expr> | "(" <expr> ")"
 
 <func-call> ::= <identifier> "(" <args> ")"
-
-<args> ::= <expr> | <expr> "," <args> | ε
 
 <lambda-expr> ::= "@LAMBDA@" "(" <identifier> ")" "@:@" <expr>
 
