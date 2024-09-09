@@ -10,5 +10,8 @@ iseven(10)
 @DEF@ greet() @IS@ @TRUE@ @END@
 greet()
 
-@DEF@ adder(x) @IS@ (@LAMBDA@ (x) @:@ x @+@ 1)(x) @END@
-adder(5)
+@DEF@ addOne(x) @IS@ (@LAMBDA@ (x) @:@ x @+@ 1)(x) @END@
+addOne(5)
+
+@DEF@ addMulti(x, y, z) @IS@ x(y) @*@ z @END@
+addMulti(addOne, 2, 3)
